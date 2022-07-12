@@ -1,5 +1,4 @@
 class Game < ApplicationRecord
-
     validates_presence_of :target_score
 
     # Generate random rolls based on rules for bowling
@@ -63,15 +62,8 @@ class Game < ApplicationRecord
         total_score
     end
 
-    # rolls = generate_rolls
-    # puts "Rolls: #{rolls.count}"
-
-    # game_score = calculate_game_score(rolls)
-    # rolls = generate_rolls
-
-    # # Simulate games until defined score is reached
-    # 2.times { puts " " }
-
+    # Define minimum_score in order to limit time to generate...
+    # Higher number takes exponentially longer
     def minimum_score(score)
         game_score = 0
         game_count = 0
@@ -88,19 +80,4 @@ class Game < ApplicationRecord
             game_count: game_count
         }
     end
-
-    # # Number of games played
-    # 2.times { puts " " }
-
-    # puts "You bowled #{game_count} games"
-
-    # # Number of rolls for winning game
-    # 2.times { puts " " }
-    # puts "Numner of rolls for Winning Game: #{rolls.count}"
-    # puts "#{rolls}"
-
-    # # Final score for winning game
-    # 2.times { puts " " }
-    # puts "Game over!!!"
-    # puts "Final score: #{game_score}"
 end

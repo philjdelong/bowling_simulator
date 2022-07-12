@@ -2,8 +2,6 @@ require 'pry'
 
 class BowlingController < ApplicationController
     def index
-        flash.clear
-
         if Game.last
             game = Game.last
         else
