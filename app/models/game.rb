@@ -1,13 +1,10 @@
-class Game
-    attr_reader :generate_rolls
+class Game < ApplicationRecord
 
-    def initialize()
-    end
+    validates_presence_of :target_score
 
     # Generate random rolls based on rules for bowling
     def generate_rolls
         scores = []
-
         until scores.count == 20
             if scores.count % 2 == 1
                 roll = rand(0..(10 - scores[-1]))
@@ -75,15 +72,22 @@ class Game
     # # Simulate games until defined score is reached
     # 2.times { puts " " }
 
-    # game_score = 0
-    # game_count = 0
-
-    # until game_score >= 200
-    #     game_count = game_count + 1
-    #     rolls = generate_rolls
-    #     game_score = calculate_game_score(rolls)
-    #     puts "#{rolls}"
-    # end
+    def minimum_score(score)
+        game_score = 0
+        game_count = 0
+        
+        until game_score >= score
+            game_count = game_count + 1
+            rolls = generate_rolls
+            game_score = calculate_game_score(rolls)
+            puts "#{rolls}"
+        end
+        { 
+            rolls: rolls,
+            game_score: game_score,
+            game_count: game_count
+        }
+    end
 
     # # Number of games played
     # 2.times { puts " " }
