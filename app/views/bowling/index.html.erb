@@ -5,6 +5,38 @@
     Welcome to Bowling! The auto-generated, best, and most amazing BOWLING game on planet Earth.
 </h3>
 
+<h2>Target Score: <%= @target_score %></h2>
+
+<% if flash[:message] %>
+    <div class="notice" style="color:red">
+        <%= flash[:message] %>
+    </div>
+<% end %>
+
+<br>
+
+<%= form_with(url: "/update", method: :patch) do |f| %>
+    <%= f.text_field :target_score %>
+    <%= f.submit "Update" %>
+<% end %>
+
+<sup>Please enter a score between <b>1</b> and <b><%= @max_score %></b></sup>
+<br>
+<sup><i>Note: Anything higher takes too long to generate</i></sup>
+<br>
+<br>
 <div>
-    <%= @game_score %>
+    <span><b>Games simulated:</b></span> <span style="color:red"><%= @minimum_game_count %></span>
+    <br>
+    <span><b>Time to generate:</b></span> <span style="color:red"><%= @total_time.round(2) %></span> <span>seconds</span>
+    <br>
+    <br>
+    <div>Rolls: <%= @minimum_rolls %></div>
+    <div>Score: <%= @minimum_score %></div>
+</div>
+
+<br>
+
+<div>
+    <%= button_to "Generate New", "/" %>
 </div>
